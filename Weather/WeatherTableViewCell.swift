@@ -9,6 +9,21 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
     
+    struct Model {
+        let day: String
+        let weather: String
+        let humidity: String
+        let temperature: String
+        
+        init(weatherInfo: WeatherInfo) {
+            day = weatherInfo.day
+            weather = weatherInfo.weather
+            humidity = weatherInfo.humidity
+            temperature = weatherInfo.temperature
+        }
+    }
+    
+    
     static var classString: String {
         String(describing: WeatherTableViewCell.self)
     }
@@ -17,5 +32,11 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    
+    func setupView(weatherInfo: Model) {
+        dayLabel.text = weatherInfo.day
+        humidityLabel.text = weatherInfo.humidity
+        temperatureLabel.text = weatherInfo.temperature
+    }
     
 }

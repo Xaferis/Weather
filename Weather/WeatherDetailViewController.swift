@@ -7,17 +7,20 @@
 
 import UIKit
 
+struct WeatherInfo {
+    let day: String
+    let weather: String
+    let humidity: String
+    let temperature: String
+}
+
+
 class WeatherDetailViewController: UIViewController {
     
     // MARK: - Outlets
     
     
-    struct DayWeather {
-        let day: String
-        let weather: String
-        let humidity: String
-        let temperature: String
-    }
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,24 +30,23 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var feelsLikeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    var weatherStruct: [DayWeather] {
-        [DayWeather(day: "Monday", weather: "Sun", humidity: "40%", temperature: "22C"),
-         DayWeather(day: "Tuesday", weather: "Sun", humidity: "30%", temperature: "23C"),
-         DayWeather(day: "Wednesday", weather: "Rain", humidity: "70%", temperature: "19C"),
-         DayWeather(day: "Thursday", weather: "Sun", humidity: "40%", temperature: "20C"),
-         DayWeather(day: "Friday", weather: "Rain", humidity: "65%", temperature: "18C"),
-         DayWeather(day: "Saturday", weather: "Sun", humidity: "30%", temperature: "24C"),
-         DayWeather(day: "Sunday", weather: "Sun", humidity: "35%", temperature: "25C")]
+    var weatherArray: [WeatherInfo] {
+        [WeatherInfo(day: "Monday", weather: "Sun", humidity: "40%", temperature: "22°C"),
+         WeatherInfo(day: "Tuesday", weather: "Sun", humidity: "30%", temperature: "23°C"),
+         WeatherInfo(day: "Wednesday", weather: "Rain", humidity: "70%", temperature: "19°C"),
+         WeatherInfo(day: "Thursday", weather: "Sun", humidity: "40%", temperature: "20°C"),
+         WeatherInfo(day: "Friday", weather: "Rain", humidity: "65%", temperature: "18°C"),
+         WeatherInfo(day: "Saturday", weather: "Sun", humidity: "30%", temperature: "24°C"),
+         WeatherInfo(day: "Sunday", weather: "Sun", humidity: "35%", temperature: "25°C")]
     }
     
     override func viewDidLoad() {
-        //tableView.tableHeaderView = nil
+        super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         
         tableView.register(UINib(nibName: WeatherTableViewCell.classString, bundle: nil), forCellReuseIdentifier: WeatherTableViewCell.classString)
         
-        super.viewDidLoad()
     }
 }
 
@@ -52,7 +54,7 @@ extension WeatherDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return weatherStruct.count
+        return weatherArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,10 +63,8 @@ extension WeatherDetailViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let weatherInfo = weatherStruct[indexPath.row]
-        weatherCell.dayLabel.text = weatherInfo.day
-        weatherCell.humidityLabel.text = weatherInfo.humidity
-        weatherCell.temperatureLabel.text = weatherInfo.temperature
+        let model = WeatherTableViewCell.Model(weatherInfo: weatherArray[indexPath.row])
+        weatherCell.setupView(weatherInfo: model)
         return weatherCell
     }
 }
