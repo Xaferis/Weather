@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherDetailViewController: UIViewController {
     
@@ -19,9 +20,12 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var feelsLikeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
+    var locationManager = LocationManager()
+    
     // MARK: - Variables
     
     var refreshControl = UIRefreshControl()
+
     
     var weatherArray: [ForecastDay] {
         [ForecastDay(title: "Saturday", temperature: 22, perception: 40, state:.cloudy),
@@ -38,6 +42,15 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        LocationManager.shared.getLocation { [weak self] location, error in
+            
+            if let error = error {
+                print("Tu je chyba")
+            } else if let location = location {
+                self?.locationLabel.text = location.city
+            }
+        }
         
         tableView.register(UINib(nibName: WeatherDayTableViewCell.classString, bundle: nil), forCellReuseIdentifier: WeatherDayTableViewCell.classString)
     }
@@ -68,6 +81,3 @@ extension WeatherDetailViewController: UITableViewDelegate {
         return 56;
     }
 }
-
-
-
