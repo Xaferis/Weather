@@ -43,6 +43,11 @@ class WeatherDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        dateLabel.text = formatter.string(from: Date())
+        
+        
         LocationManager.shared.getLocation { [weak self] location, error in
             
             if let error = error {
