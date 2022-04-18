@@ -20,9 +20,11 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var feelsLikeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    var locationManager = LocationManager()
-    
     // MARK: - Variables
+    
+    var place: Place?
+    
+    var locationManager = LocationManager()
     
     var refreshControl = UIRefreshControl()
 
@@ -36,10 +38,20 @@ class WeatherDetailViewController: UIViewController {
          ForecastDay(title: "Thursday", temperature: 26, perception: 10, state:.sunny)]
     }
     
+    @IBAction func search(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "SearchViewController", bundle: nil)
+        if let navigationController = storyboard.instantiateInitialViewController() {
+            present(navigationController, animated: true)
+        }
+    }
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //String tam nezohrava ziadnu rolu, je tam len aby sa dal metoda zavolat
+        //search(String())
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -47,7 +59,7 @@ class WeatherDetailViewController: UIViewController {
         formatter.dateStyle = .medium
         dateLabel.text = formatter.string(from: Date())
         
-        
+        locationLabel.text = place?.city
         LocationManager.shared.getLocation { [weak self] location, error in
             
             if let error = error {
@@ -61,7 +73,7 @@ class WeatherDetailViewController: UIViewController {
     }
 }
 
-// MARK - Table View Data Source
+// MARK: - Table View Data Source
 
 extension WeatherDetailViewController: UITableViewDataSource {
     

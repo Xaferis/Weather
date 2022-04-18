@@ -12,7 +12,7 @@
         <!--Weather-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="idecko" id="BYZ-38-t0r" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,33 +87,6 @@
                                         <constraint firstItem="myI-L1-dNc" firstAttribute="leading" secondItem="Uza-Ay-4Uh" secondAttribute="leading" constant="16" id="wDj-8I-RZw"/>
                                     </constraints>
                                 </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherTableViewCell" id="tmN-jz-pZj" customClass="WeatherTableViewCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="298.66666603088379" width="390" height="74.666664123535156"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tmN-jz-pZj" id="Ksb-LO-k9a">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="74.666664123535156"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuu-oL-o8z">
-                                                    <rect key="frame" x="174.33333333333334" y="27" width="41.333333333333343" height="20.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Xuu-oL-o8z" secondAttribute="bottom" constant="16" id="0I8-vU-BAr"/>
-                                                <constraint firstItem="Xuu-oL-o8z" firstAttribute="centerX" secondItem="Ksb-LO-k9a" secondAttribute="centerX" id="AMu-dG-Zdr"/>
-                                                <constraint firstItem="Xuu-oL-o8z" firstAttribute="top" secondItem="Ksb-LO-k9a" secondAttribute="topMargin" constant="16" id="ykW-lA-ySj"/>
-                                                <constraint firstItem="Xuu-oL-o8z" firstAttribute="centerY" secondItem="Ksb-LO-k9a" secondAttribute="centerY" id="zMA-yV-7eZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="weatherTextLabel" destination="Xuu-oL-o8z" id="SyB-LK-rCD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -125,7 +98,15 @@
                             <constraint firstItem="MqB-A9-27y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rtg-Hg-eIG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Weather" id="nfc-6S-y76"/>
+                    <tabBarItem key="tabBarItem" title="Location" image="location.fill" catalog="system" id="HAk-TU-Fm4"/>
+                    <navigationItem key="navigationItem" title="Weather" id="nfc-6S-y76">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="sKR-OB-pe0">
+                            <connections>
+                                <action selector="search:" destination="BYZ-38-t0r" id="BiC-9g-vSw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateLabel" destination="M8t-pe-ybQ" id="jyt-Hn-6eY"/>
                         <outlet property="feelsLikeLabel" destination="aGr-HS-G1p" id="4bv-5K-zvu"/>
