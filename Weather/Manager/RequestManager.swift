@@ -17,7 +17,7 @@ struct RequestManager {
         let request = WeatherRequest(latitude: "\(coordinates.latitude)",
                                      longitude: "\(coordinates.longitude)",
                                      exclude: "hourly,minutely,alerts",
-                                     appId: "1b39d8c994877d625189136466d22df6",
+                                     appId: "your_api_token",
                                      units: "metric")
         
         let decoder = JSONDecoder()
