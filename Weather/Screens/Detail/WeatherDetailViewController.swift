@@ -29,14 +29,7 @@ class WeatherDetailViewController: UIViewController {
     var refreshControl = UIRefreshControl()
 
     
-    var weatherArray: [ForecastDay] {
-        [ForecastDay(title: "Saturday", temperature: 22, perception: 40, state:.cloudy),
-         ForecastDay(title: "Sunday", temperature: 23, perception: 30, state:.cloudy),
-         ForecastDay(title: "Monday", temperature: 19, perception: 70, state:.rainy),
-         ForecastDay(title: "Tuesday", temperature: 24, perception: 20, state:.rainy),
-         ForecastDay(title: "Wednesday", temperature: 25, perception: 10, state:.sunny),
-         ForecastDay(title: "Thursday", temperature: 26, perception: 10, state:.sunny)]
-    }
+    var days = [DailyWeather]()
     
     @IBAction func search(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SearchViewController", bundle: nil)
@@ -62,14 +55,33 @@ class WeatherDetailViewController: UIViewController {
         locationLabel.text = place?.city
         LocationManager.shared.getLocation { [weak self] location, error in
             
+            guard let self = self else { return }
+            
             if let error = error {
                 print("Tu je chyba")
             } else if let location = location {
-                self?.locationLabel.text = location.city
+                RequestManager.shared.getWeatherData(for: location.coordinates) { response in
+                    switch response {
+                    case .success(let weatherData):
+                        self.setupView(with: weatherData.current)
+                        self.days = weatherData.days
+                        self.tableView.reloadData()
+                    case .failure(let error):
+                        print("Error")
+                    }
+                }
+                
+                self.locationLabel.text = location.city
             }
         }
         
         tableView.register(UINib(nibName: WeatherDayTableViewCell.classString, bundle: nil), forCellReuseIdentifier: WeatherDayTableViewCell.classString)
+    }
+    
+    func setupView(with currentWeather: CurrentWeather) {
+        self.temperatureLabel.text = currentWeather.temperatureWithCelsius
+        self.feelsLikeLabel.text = currentWeather.feelsLikeWithCelsius
+        weatherStatusLabel.text = currentWeather.weather.first?.description
     }
 }
 
@@ -79,16 +91,19 @@ extension WeatherDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return weatherArray.count
+        return days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let weatherCell = tableView.dequeueReusableCell(withIdentifier: WeatherDayTableViewCell.classString, for: indexPath) as? WeatherDayTableViewCell else {
+        guard let weatherCell = tableView.dequeueReusableCell(
+            withIdentifier: WeatherDayTableViewCell.classString,
+            for: indexPath) as? WeatherDayTableViewCell
+        else {
             return UITableViewCell()
         }
         
-        weatherCell.setupCell(with: weatherArray[indexPath.row])
+        weatherCell.setupCell(with: days[indexPath.row])
         return weatherCell
     }
 }

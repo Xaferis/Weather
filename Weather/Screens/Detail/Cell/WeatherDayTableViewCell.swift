@@ -24,10 +24,10 @@ class WeatherDayTableViewCell: UITableViewCell {
 
 // MARK: - Public
 extension WeatherDayTableViewCell {
-    func setupCell(with day: ForecastDay) {
-        dayLabel.text = day.title
-        weatherImageView.image = day.state.icon?.withRenderingMode(.alwaysOriginal)
-        perceptionLabel.text = day.perceptionPercentage
-        temperatureLabel.text = day.temperatureInCelsius
+    func setupCell(with day: DailyWeather) {
+        dayLabel.text = DateFormatter.dayDateFormattter.string(from: day.date)
+        weatherImageView.image = day.weather.first?.image?.withRenderingMode(.alwaysOriginal)
+        perceptionLabel.text = day.formattedPrecipitation
+        temperatureLabel.text = day.temperature.temperatureWithCelsius
     }
 }
