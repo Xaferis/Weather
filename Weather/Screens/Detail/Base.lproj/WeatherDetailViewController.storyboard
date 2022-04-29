@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J8W-q2-Ayt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J8W-q2-Ayt">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,13 +89,58 @@
                                     </constraints>
                                 </view>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jn3-l5-Tdf">
+                                <rect key="frame" x="176.66666666666666" y="406" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7RJ-eI-FRn">
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcu-ct-Zz1">
+                                        <rect key="frame" x="20" y="354.66666666666669" width="350" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxD-ko-Rag">
+                                        <rect key="frame" x="100" y="383" width="190" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Refresh"/>
+                                        <connections>
+                                            <action selector="reload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bzu-Ch-hhq"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBy-4F-nWf">
+                                        <rect key="frame" x="184.33333333333334" y="325.33333333333331" width="21.333333333333343" height="22.333333333333314"/>
+                                        <imageReference key="image" image="umbrella.fill" catalog="system" symbolScale="default"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="RxD-ko-Rag" firstAttribute="top" secondItem="Zcu-ct-Zz1" secondAttribute="bottom" constant="8" id="3y3-Bs-ytv"/>
+                                    <constraint firstAttribute="trailing" secondItem="RxD-ko-Rag" secondAttribute="trailing" constant="100" id="41W-u1-Rcc"/>
+                                    <constraint firstItem="RxD-ko-Rag" firstAttribute="leading" secondItem="7RJ-eI-FRn" secondAttribute="leading" constant="100" id="BXF-nF-ose"/>
+                                    <constraint firstItem="Zcu-ct-Zz1" firstAttribute="leading" secondItem="7RJ-eI-FRn" secondAttribute="leading" constant="20" id="I3U-pE-4Df"/>
+                                    <constraint firstItem="QBy-4F-nWf" firstAttribute="centerY" secondItem="7RJ-eI-FRn" secondAttribute="centerY" id="IaI-X6-h1L"/>
+                                    <constraint firstItem="RxD-ko-Rag" firstAttribute="centerX" secondItem="7RJ-eI-FRn" secondAttribute="centerX" id="OYy-o7-bnj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zcu-ct-Zz1" secondAttribute="trailing" constant="20" id="Tgj-Al-HML"/>
+                                    <constraint firstItem="QBy-4F-nWf" firstAttribute="centerX" secondItem="7RJ-eI-FRn" secondAttribute="centerX" id="hV0-Ol-8aO"/>
+                                    <constraint firstItem="Zcu-ct-Zz1" firstAttribute="top" secondItem="QBy-4F-nWf" secondAttribute="bottom" constant="8" id="pLh-Kz-MWK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="MqB-A9-27y" secondAttribute="bottom" id="3Rg-3U-SJP"/>
                             <constraint firstItem="MqB-A9-27y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="91R-JS-RfS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7RJ-eI-FRn" secondAttribute="bottom" id="BLe-0j-tnH"/>
+                            <constraint firstItem="7RJ-eI-FRn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jb0-vI-W8h"/>
+                            <constraint firstItem="7RJ-eI-FRn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Mc2-em-Q4h"/>
+                            <constraint firstItem="jn3-l5-Tdf" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Meb-hN-h3c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MqB-A9-27y" secondAttribute="trailing" id="ZKH-Fg-EZf"/>
+                            <constraint firstItem="jn3-l5-Tdf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="geM-8p-uLM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7RJ-eI-FRn" secondAttribute="trailing" id="n7a-Gb-S7a"/>
                             <constraint firstItem="MqB-A9-27y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rtg-Hg-eIG"/>
                         </constraints>
                     </view>
@@ -108,7 +154,10 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="jn3-l5-Tdf" id="cV2-hg-iz1"/>
                         <outlet property="dateLabel" destination="M8t-pe-ybQ" id="jyt-Hn-6eY"/>
+                        <outlet property="emptyView" destination="7RJ-eI-FRn" id="3H0-WG-QWe"/>
+                        <outlet property="errorMessageLabel" destination="Zcu-ct-Zz1" id="gF9-ZQ-O3O"/>
                         <outlet property="feelsLikeLabel" destination="aGr-HS-G1p" id="4bv-5K-zvu"/>
                         <outlet property="locationLabel" destination="y1z-hh-vxo" id="sfm-d5-M4q"/>
                         <outlet property="tableView" destination="MqB-A9-27y" id="j38-QQ-7Uk"/>
@@ -142,6 +191,7 @@
     </scenes>
     <resources>
         <image name="location.fill" catalog="system" width="128" height="121"/>
+        <image name="umbrella.fill" catalog="system" width="122" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

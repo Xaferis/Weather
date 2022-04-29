@@ -8,6 +8,12 @@
 import Foundation
 import MapKit
 
+struct Place: Codable {
+    
+    let city: String
+    let country: String
+}
+
 typealias LocalSearchCompletionHandler = (([Place]) -> Void)
 
 class SearchManager: NSObject {
@@ -40,11 +46,6 @@ class SearchManager: NSObject {
     }
 }
 
-struct Place {
-    
-    let city: String
-    let country: String
-}
 
 extension SearchManager: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {

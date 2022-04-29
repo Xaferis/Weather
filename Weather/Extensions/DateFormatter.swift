@@ -15,4 +15,11 @@ extension DateFormatter {
         
         return dateFormatter
     }()
+    
+    static let mediumDateFormattter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        
+        return dateFormatter
+    }()
 }
