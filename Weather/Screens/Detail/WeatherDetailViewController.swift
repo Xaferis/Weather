@@ -34,7 +34,6 @@ class WeatherDetailViewController: UIViewController {
     
     var place: Place?
     
-    //var locationManager = LocationManager()
     var location: CurrentLocation?
     var days = [DailyWeather]()
     var refreshControl = UIRefreshControl()
