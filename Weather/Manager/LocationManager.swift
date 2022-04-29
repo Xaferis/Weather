@@ -88,7 +88,7 @@ extension LocationManager: CLLocationManagerDelegate {
         default:
             print ("something else")
         }
-        
+    
         print(manager.authorizationStatus)
     }
 }
