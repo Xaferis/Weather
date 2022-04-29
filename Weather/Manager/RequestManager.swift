@@ -1,6 +1,6 @@
 //
 //  RequestManager.swift
-//  Weather
+//  Weather.
 //
 //  Created by Matúš Mištrik on 23/04/2022.
 //

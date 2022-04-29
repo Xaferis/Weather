@@ -1,6 +1,6 @@
 //
 //  LocationManager.swift
-//  Weather.
+//  Weather
 //
 //  Created by Matúš Mištrik on 10/04/2022.
 //

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Weather.
+//  Weather
 //
 //  Created by Matúš Mištrik on 28/03/2022.
 //
