@@ -1,6 +1,6 @@
 //
 //  SearchManager.swift
-//  Weather
+//  Weather.
 //
 //  Created by Matúš Mištrik on 18/04/2022.
 //
